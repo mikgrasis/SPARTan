@@ -1,14 +1,14 @@
 % Implementation of the KDD 2017 paper "SPARTan: Scalable PARAFAC2 for
 % Large & Sparse Data", by Ioakeim Perros, Evangelos E. Papalexakis, Fei
 % Wang, Richard Vuduc, Elizabeth Searles, Michael Thompson and Jimeng Sun
-clear all;close all;
+close all; clear, clc
 
 % First, specify the root directory where the Tensor Toolbox and
 % N-way Toolbox folders can be found. The code has been tested using
 % Tensor Toolbox v2.6 and N-Way Toolbox v3.30.
-ROOTPATH = '';
-addpath(strcat(ROOTPATH, 'tensor_toolbox'));
-addpath(strcat(ROOTPATH, 'nway'));
+rootDir = return_repository_root();
+addpath(genpath(fullfile(rootDir,'_toolboxes','tensor_toolbox_2.6')))
+addpath(genpath(fullfile(rootDir,'_toolboxes','Nway_Toolbox_3.31')))
 
 % Flag indicating whether parfor capabilites will be exploited
 PARFOR_FLAG = 0;
