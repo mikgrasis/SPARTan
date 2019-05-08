@@ -19,11 +19,11 @@ else
     disp('No parallel pool enabled.');
 end
 
-K = 1000; %number of subjects (K)
-J = 500; %number of variables (J)
+K = 100; %number of subjects (K)
+J = 100; %number of variables (J)
 I = 100; %max number of observations max(I_k)
 sparsity = 10^-3; %sparsity of each input matrix X_k
-R = 20; %target rank 
+R = 5; %target rank 
 
 [X, totalnnz] = create_parafac2_problem(K, J, R, sparsity, I, PARFOR_FLAG);
 fprintf(1, 'Total non-zeros: %d\n', totalnnz);
@@ -34,9 +34,9 @@ if (ALG==1)
 else
     disp('Sparse PARAFAC2 baseline execution'); % if ALG==0, then the baseline is executed
 end
-Maxiters = 1000; % maximum number of iterations
-Constraints = [1 1]; % non-negative constraints on both the V and S_k factors
+Maxiters = 100; % maximum number of iterations
+Constraints = [0 0]; % non-negative constraints on both the V and S_k factors
 Options = [1e-6 Maxiters 2 0 0 ALG PARFOR_FLAG]; % first argument is convergence criterion
 
 rng('default');
-[H, V, W, Q, FIT, IT_TIME]=parafac2_sparse_paper_version(X,R,Constraints,Options);
+[H, V, W, Q, FIT, IT_TIME] = parafac2_sparse_paper_version(X, R, Constraints, Options);
